@@ -14,3 +14,8 @@ depends 'yum'
 %w{ redhat centos scientific fedora ubuntu debian }.each do |os|
   supports os
 end
+
+recipe 'mod_security::default', 'mod_security default install'
+recipe 'mod_security::install_base', 'mod_security base install'
+recipe 'mod_security::install_owasp_core_rule_set', 'mod_security owasp core ruleset'
+recipe 'mod_security::install_custom_rule_set', 'install_custom_ruleset'
