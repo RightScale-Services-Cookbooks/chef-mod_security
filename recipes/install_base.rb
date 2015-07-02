@@ -107,7 +107,7 @@ if node[:mod_security][:from_source]
     action :nothing
   end
 
-  libdir="#{node[:mod_security][:source_module_path]}"
+  libdir=node[:mod_security][:source_module_path]
 
 else
 
@@ -121,8 +121,7 @@ else
     package 'modsecurity-apache'
   end
 
-  libdir="#{node['apache']['libexec_dir']}"
-
+  libdir=node['apache']['libexec_dir']
 end
 
 
