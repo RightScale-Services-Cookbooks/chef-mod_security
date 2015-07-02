@@ -89,21 +89,21 @@ if node[:mod_security][:from_source]
 
   execute 'configure_mod_security' do
     command './configure'
-    cwd "#{Chef::Config[:file_cache_path]}/modsecurity-apache_#{node[:mod_security][:source_version]}"
+    cwd "#{Chef::Config[:file_cache_path]}/modsecurity-#{node[:mod_security][:source_version]}"
     action :nothing
     notifies :run, 'execute[make_mod_security]', :immediately
   end
 
   execute 'make_mod_security' do
     command 'make clean && make && make mlogc'
-    cwd "#{Chef::Config[:file_cache_path]}/modsecurity-apache_#{node[:mod_security][:source_version]}"
+    cwd "#{Chef::Config[:file_cache_path]}/modsecurity-#{node[:mod_security][:source_version]}"
     action :nothing
     notifies :run, 'execute[install_mod_security]', :immediately
   end
 
   execute 'install_mod_security' do
     command 'make install'
-    cwd "#{Chef::Config[:file_cache_path]}/modsecurity-apache_#{node[:mod_security][:source_version]}"
+    cwd "#{Chef::Config[:file_cache_path]}/modsecurity-#{node[:mod_security][:source_version]}"
     action :nothing
   end
 
